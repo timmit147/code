@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>code</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+</head>
+<body>
+
+  <header>
+    <h1>Code</h1>
+  </header>
+
+
+ <main>
+
+    <h2>image gallery</h2>
+    <p>Create gallery from images on page</p>
+    <textarea  id="image-gallery-javascript">
+      
+      // Popup image
+      var galleryimg = [];
+      var i = 0;
+      
+      document.querySelectorAll('.impressieGallery img').forEach(item => {
+          // console.log(item.src);
+          galleryimg.push(item.src);
+      
+      
+          // event lister
+          item.addEventListener('click', event => {
+              // alert("Hello! I am an alert box!!");
+      
+              var popupContainer = document.createElement('div');
+              var popup = document.createElement('div');
+              var popupImg = document.createElement('img');
+      
+              popupImg.src = item.src;
+              
+              popupContainer.className = 'popupContainer';
+      
+              popup.className = 'popup';
+              popup.id = 'test';
+      
+              var popupCancel = document.createElement('div');
+              popupCancel.className = 'cancel';
+              
+              popupCancel.innerHTML = '<i class="fas fa-times"></i>';
+              popupCancel.onclick = function (e) { popupContainer.parentNode.removeChild(popupContainer) };
+      
+              var popupNav = document.createElement('div');
+              popupNav.className = 'popupNav';
+      
+              var popupNext = document.createElement('div');
+              popupNext.innerHTML = '<i class="fas fa-caret-right"></i>';
+              popupNext.className = 'next';
+       
+              popupNext.onclick = function (e) { 
+      
+                   i++; 
+                   popupImg.src = galleryimg[i]; 
+                   popupNumber.innerHTML = (i+1) + " / " + galleryimg.length;
+                   if(galleryimg.length < i+1){
+                      i = 0;
+                      popupNumber.innerHTML = (i+1) + " / " + galleryimg.length;
+                      popupImg.src = galleryimg[i]; 
+                  }
+              };
+      
+              var popupBack = document.createElement('div');
+              popupBack.innerHTML = '<i class="fas fa-caret-left"></i>';
+              popupBack.className = 'back';
+              
+              popupBack.onclick = function (e) {  
+                  i--;
+                  popupImg.src = galleryimg[i];
+                   popupNumber.innerHTML = (i+1) + " / " + galleryimg.length;
+                   if(0 > i){
+                      i = galleryimg.length ;
+                      i--;
+                      popupNumber.innerHTML = (i+1) + " / " + galleryimg.length;
+                      popupImg.src = galleryimg[i]; 
+                  }            
+                  
+                  };
+      
+              
+              var popupAlt = document.createElement('span');
+              popupAlt.innerHTML = popupImg.alt;
+      
+              var popupNumber = document.createElement('span');
+              popupNumber.innerHTML = (i+1) + " / " + galleryimg.length;
+                          
+              
+      
+              document.body.appendChild(popupContainer);
+              popupContainer.appendChild(popup);
+              popup.appendChild(popupImg);
+              popup.appendChild(popupNav);
+              if(galleryimg.length > 1){
+                  popup.appendChild(popupNext);
+                  popup.appendChild(popupBack);
+                  popupNav.appendChild(popupNumber);   
+                  popupNav.appendChild(popupAlt); 
+              }
+      
+              popup.appendChild(popupCancel);
+          
+      
+          })
+        })
+      
+    
+    </textarea>
+<button onclick="myFunction('image-gallery-javascript')">Copy javascript</button>
+
+<textarea  id="image-gallery-css">
+  // Image gallery
+
+  .impressieGallery img{
+    cursor: pointer;
+  }
+  
+  .popupContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000a8;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #test {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  position: relative;
+  }
+  
+  #test img {
+    height: 100%;
+    width: max-content;
+    align-self: center;
+    max-width: 70vw;
+  } 
+  
+  .popupNav{
+  padding: 10px;
+  position: relative;
+  min-height: 40px;
+  color: #CCC;
+  text-align: right;
+  }
+  
+  .cancel {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: #CCC;
+    font-size: 1.5em;
+    margin-top: -45px;
+  }
+  
+  .next,.back {
+    position: absolute;
+    top: 40%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    justify-content: center;
+    display: flex;
+    color: #CCC;
+    align-items: center;
+    font-size: 3em;
+    cursor: pointer;
+  }
+  
+  .back {
+    position: fixed;
+    left: 0;
+  } 
+  
+  .next{
+    right: 0;
+    position: fixed;
+  }
+  
+   // Image gallery end
+  </textarea>
+<button onclick="myFunction('image-gallery-css')">Copy css</button>
+
+
+ </main> 
+
+  
+</body>
+</html>
+
+<script>
+function myFunction(x) {
+  /* Get the text field */
+  var copyText = document.getElementById(x);
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+}
+
+</script>
