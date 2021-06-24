@@ -1,0 +1,18 @@
+<body>
+    
+</body>
+
+
+<script>
+
+
+// Retrieve the object from storage
+var retrievedObject = JSON.parse(localStorage.getItem ('testObject'));
+
+for (var property in retrievedObject) {
+    const div = document.createElement("div"); 
+    div.innerHTML = property;           
+    document.body.appendChild(div);  
+}
+
+</script>
