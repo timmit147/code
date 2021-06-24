@@ -1,0 +1,7 @@
+umount /Users/53gradennoord/Documents/Mounts/Websites
+
+sshfs tim@devserver:/var/www ~/Documents/Mounts/websites -ovolname=Websites -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,defer_permissions,follow_symlinks
+
+
+
+sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 tim@devserver:/home/concrete ~/Documents/Mounts/resources -ovolname=Resources -o follow_symlinks -o defer_permissions
